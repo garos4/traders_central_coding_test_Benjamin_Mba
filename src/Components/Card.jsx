@@ -1,4 +1,14 @@
-import { useEffect } from 'react'
+/**
+ * This is the card component
+ * 
+ * It accepts two props
+ * 
+ * 1. title: which handles the title
+ * 
+ * 2. children: which handles everything child passed to the component
+ *  
+ */
+
 
 const Card = ({title,children}) => {
 

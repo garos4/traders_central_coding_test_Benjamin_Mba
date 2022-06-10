@@ -1,3 +1,11 @@
+/**
+ * This is the api file
+ * 
+ * Here, I use the axios library to make api calls to the api endpoints
+ * 
+ * provided by CoinGecko's API
+ */
+
 import axios from "axios";
 import { baseURL } from "../Constants";
 

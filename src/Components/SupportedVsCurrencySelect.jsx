@@ -1,3 +1,14 @@
+/**
+ * This is the target currency select component
+ * 
+ * It makes api call to get the data
+ * 
+ * Then parses the data to the select
+ * 
+ * handleChange function mutates the target currency state in the Body component
+ * 
+ */
+
 import  { useEffect, useState } from "react";
 import { getSupportedVsCurrency } from "../Apis";
 

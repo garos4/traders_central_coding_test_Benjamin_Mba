@@ -1,4 +1,14 @@
-import  { useState } from "react";
+/**
+ * This is the Body component
+ * 
+ * This is where all the components are called and laid out
+ * 
+ *  
+ * 
+ *    
+ */
+
+import { useState } from "react";
 import Card from "./Card";
 import BaseCurrencySelect from "./BaseCurrencySelect";
 import SupportedVsCurrencySelect from "./SupportedVsCurrencySelect";
@@ -7,30 +17,82 @@ import { convertCurrency } from "../Apis";
 
 
 const Body = () => {
+    /**
+     * Loading state(boolean) to control when a request for data is made to the server
+     * for a particular rate
+     */
     const [loading, setLoading] = useState(false);
+
+
+    /**
+     * Amount state to hold value of amount to be converted
+     */
     const [amount, setAmount] = useState();
+
+
+    /**
+     * Base currency state to hold and set value selected for the base currency
+     */
     const [base_currency, setBaseCurrency] = useState('');
+
+
+    /**
+     * Target currency state to hold value selected for the target currency
+     */
     const [target_currency, setTargetCurrency] = useState('');
+
+
+    /**
+     * Converted amount state to hold value the equivalent value of the amount provided after conversion
+     */
     const [convertedAmount, setConvertedAmount] = useState('');
 
+
+
+
+    /**
+     * Function to make api call for the rate
+     * 
+     * and the convert the amount provided with the rate returned from the api
+     */
     const convertBaseToTarget = async () => {
         setLoading(true);
 
+
+        /**
+         * Setting params for the endpoint to consume
+         * 
+         */
         const form_data = { base_currency, target_currency }
 
+
+        /**
+         * Make request to the api 
+         * 
+         */
         await convertCurrency(form_data)
             .then((response) => {
 
                 setLoading(false);
 
+
+                /**
+                 * Get value of rate returned in the response 
+                 * 
+                 */
                 const rate = response.data[`${base_currency}`];
 
-                console.log(rate[`${target_currency}`]);
-
-                console.log(amount);
-
+                /**
+                 * Convert by multiplying rate by the amount entered 
+                 * 
+                 */
                 const converted = amount * rate[`${target_currency}`];
 
+
+                /**
+                 * Set convertedAmount state 
+                 * 
+                 */
                 setConvertedAmount(converted);
 
             })
